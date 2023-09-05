@@ -9,12 +9,23 @@ var includeNumber = "";
 var includeSymbol = "";
 
 
-//Prompts user to enter a number between 8 and 128. Loops function if criteria isn't met
+//Prompts user to enter a number
 function passwordLength() {
-  pwdLength = Number(prompt("Set Password Length. Min: 8, Max: 128 Characters"));
-  while (pwdLength < 8 || pwdLength > 128) {
+  var input = prompt("Set Password Length. Min: 8, Max: 128 Characters");
+  //Ends code execution if user clicks cancel
+  if (input === null) {
+    end;
+  }
+  pwdLength = Number(input);
+  //propmts user to re-enter a number if it did not fall into valid criteria
+  while (pwdLength < 8 || pwdLength > 128 || isNaN(pwdLength)) {
     alert("Please enter a valid number. Min: 8, Max: 128 Characters");
-    pwdLength = Number(prompt("Set Password Length. Min: 8, Max: 128 Characters"));
+    input = prompt("Set Password Length. Min: 8, Max: 128 Characters");
+    //Ends code execution if user clicks cancel whilst re-entering a number
+    if (input === null) {
+      end;
+    }
+    pwdLength = Number(input);
   }
 }
 
@@ -32,7 +43,7 @@ function passwordCharset() {
   }
 }
 
-//Generates function using character list and numbers selected
+//Generates password using character list and numbers selected
 function generatePassword() {
   lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
   uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -41,8 +52,7 @@ function generatePassword() {
   var pass = "";
   var charSet = "";
   
-  //Adds each option to a variable to draw from
-
+  //If each variable is selected, this adds them into one variable for the password generation to draw from
   if (includeLowercase) charSet += lowercaseChars;
   if (includeUppercase) charSet += uppercaseChars;
   if (includeNumber) charSet += numberChars;

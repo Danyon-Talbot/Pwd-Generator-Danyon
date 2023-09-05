@@ -118,6 +118,12 @@ button[disabled] {
   overflow: hidden;
 }
 
+/* Makes the button colour change when hovered over. */
+/* I did this to provide more visual feedback for the button. */
+button:hover {
+  background-color: hsl(350, 80%, 30%);
+}
+
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;
